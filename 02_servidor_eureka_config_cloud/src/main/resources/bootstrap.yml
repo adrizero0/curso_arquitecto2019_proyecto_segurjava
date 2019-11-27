@@ -1,0 +1,3 @@
+spring:
+  application:    name: servidor-eureka
+  cloud:    config:      uri: http://10.2.4.12:8888
