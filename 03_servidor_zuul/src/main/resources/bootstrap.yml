@@ -3,6 +3,8 @@ spring:
     name: servidor-zuul
   cloud:
     config:
-      uri: http://10.2.4.12:8888
-      
+      uri: http://localhost:8888
+  profiles:
+    active:
+    - adrianapriv
       

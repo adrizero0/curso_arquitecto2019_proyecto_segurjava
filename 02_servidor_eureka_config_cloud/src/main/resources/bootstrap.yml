@@ -1,3 +1,4 @@
 spring:
   application:    name: servidor-eureka
-  cloud:    config:      uri: http://10.2.4.12:8888
+  cloud:    config:      uri: http://localhost:8888
+  profiles:    active:    - adrianapriv
