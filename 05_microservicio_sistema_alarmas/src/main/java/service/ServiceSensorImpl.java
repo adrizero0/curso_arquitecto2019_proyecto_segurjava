@@ -15,11 +15,35 @@ public class ServiceSensorImpl implements ServiceSensor {
 
 	@Override
 	public List<Sensor> getSensoresByIdContrato(int idContrato) {
-		return daoSensor.findSensoresByIdContrato(idContrato);
+		List<Sensor> lista= daoSensor.findSensoresByIdContrato(idContrato);
+		if(lista!=null) {
+			return lista;
+		}
+		return null;
 	}
 
 	@Override
 	public List<Sensor> getSensoresByDni(int dni) {
+		List<Sensor> lista= daoSensor.findSensoresByDni(dni);
+		if(lista!=null) {
+			return lista;
+		}
 		return null;
+	}
+
+	@Override
+	public void cambiarModoSensor(int idSensor) {
+		Sensor sensor= daoSensor.findById(idSensor).orElse(null);
+		byte modo= sensor.getModo();
+		if(modo==(byte)1) {
+			sensor.setModo((byte) 0);
+		}else {
+			sensor.setModo((byte) 1);
+		}		
+	}
+
+	@Override
+	public Sensor obtenersensor(int idSensor) {
+		return daoSensor.findById(idSensor).orElse(null);
 	}
 }
