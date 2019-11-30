@@ -2,7 +2,3 @@ eureka:  client:
     register-with-eureka: false
     fetch-registry: false    serviceUrl:
       defaultZone: http://192.168.0.10:8761/eureka
-  instance:    ip-address: 192.168.0.10
-    prefer-ip-address: true
-    instance-id: 192.168.0.10:8761
-    

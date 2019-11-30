@@ -43,6 +43,13 @@ public class ServiceSensorImpl implements ServiceSensor {
 			daoSensor.flush();
 		}		
 	}
+	
+	@Override
+	public void cambiarModoSensorAlarma(int idSensor) {
+		Sensor sensor= obtenersensor(idSensor);		
+		sensor.setModo((byte) 1);
+		daoSensor.flush();				
+	}
 
 	@Override
 	public Sensor obtenersensor(int idSensor) {

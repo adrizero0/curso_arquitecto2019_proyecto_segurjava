@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import daos.DaoAlarma;
 import model.Alarma;
 import model.LogPoliciaPojo;
-import model.LogPolicia;
 import model.Sensor;
 
 @Service("sAlarma")
@@ -26,7 +25,7 @@ public class ServiceAlarmaImpl implements ServiceAlarma {
 	public String guardarRegistroAlarma(Alarma alarma) {
 		if(alarma.getSensor().getEstado()!=(byte)0) {
 			daoAlarma.save(alarma);		
-			sSensor.cambiarModoSensor(alarma.getSensor().getIdSensor());
+			sSensor.cambiarModoSensorAlarma(alarma.getSensor().getIdSensor());
 			llamadoPropietario(alarma.getSensor());
 			
 			if(alarma.getSensor().getContrato().getAvisoPolicia()==(byte)1) {
@@ -42,8 +41,8 @@ public class ServiceAlarmaImpl implements ServiceAlarma {
 	}
 
 	@Override
-	public LogPolicia llamadoPolicia(Alarma alarma) {
-		LogPolicia log=new LogPolicia (0, alarma.getSensor().getContrato().getCodpostal(),
+	public LogPoliciaPojo llamadoPolicia(Alarma alarma) {
+		LogPoliciaPojo log=new LogPoliciaPojo (0, alarma.getSensor().getContrato().getCodpostal(),
 													alarma.getSensor().getContrato().getDireccion(),
 													alarma.getFechaHora(),
 													alarma.getSensor().getContrato().getPoblacion(),
@@ -52,8 +51,15 @@ public class ServiceAlarmaImpl implements ServiceAlarma {
 	}
 
 	@Override
-	public Alarma getAlarmaByIdSensor(int idSensor) {
+	public Alarma crearAlarmaByIdSensor(int idSensor) {
 		Alarma alarma= new Alarma (0, new Date(), sSensor.obtenersensor(idSensor));
 		return alarma;
 	}	
+	
+	
+	
+	
+	
+	
+	
 }

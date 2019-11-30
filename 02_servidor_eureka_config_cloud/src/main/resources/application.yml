@@ -1,4 +1,4 @@
 spring:
-  application:    name: servidor-eureka  profiles:    active:    - adripriv
+  application:    name: servidor-eureka  profiles:    active:      adripriv
 server:
   port: 8761

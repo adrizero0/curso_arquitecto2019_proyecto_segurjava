@@ -4,10 +4,10 @@ zuul:
   ignoredServices: '*'  
   ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
   routes:
-      servicio-personas: # Service to create as sample
-        path: /personas/** #path that will be intercepted
-        serviceId: servicio-personas
-      servicio-cliente-personas: # Service to create as sample
-        path: /cliente/** #path that will be intercepted
-        serviceId: servicio-cliente-personas
-spring:  profiles:    active:    - adripriv  application:    name: servidor-zuul
+      servicio-logpolicia: # Service to create as sample
+        path: /zuullog/** #path that will be intercepted
+        serviceId: servicio-logpolicia
+      servicio-alarmas: # Service to create as sample
+        path: /zuulalarma/** #path that will be intercepted
+        serviceId: servicio-alarmas
+spring:  profiles:    active:      adripriv  application:    name: servidor-zuul
