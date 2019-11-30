@@ -31,6 +31,17 @@ public class LogPolicia implements Serializable {
 	private String provincia;
 
 	public LogPolicia() {
+	}	
+
+	public LogPolicia(int idLogPolicia, String codpostal, String direccion, Date fechahora, String poblacion,
+			String provincia) {
+		super();
+		this.idLogPolicia = idLogPolicia;
+		this.codpostal = codpostal;
+		this.direccion = direccion;
+		this.fechahora = fechahora;
+		this.poblacion = poblacion;
+		this.provincia = provincia;
 	}
 
 	public int getIdLogPolicia() {

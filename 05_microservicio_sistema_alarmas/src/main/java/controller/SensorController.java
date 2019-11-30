@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dtos.DtoSensor;
@@ -51,7 +52,7 @@ public class SensorController {
 		});
 	}
 	
-	@GetMapping (value = "/lista/{dni}", produces="text/event-stream")
+	@GetMapping (value = "/lista/todos/{dni}", produces="text/event-stream")
 	public Flux<List<DtoSensor>> obtenerSensoresDni(@PathVariable("dni") int dni) {
 		return Flux.create(fs->{
 			List<DtoSensor> anterior=null;
@@ -95,12 +96,9 @@ public class SensorController {
 		return false;
 	}
 		
-	@GetMapping(value = "/cambiarmodo/{idSensor}")
+	@PutMapping(value = "/cambiarmodo/{idSensor}")
 	public void cambiarModoSensor(@PathVariable("idSensor") int idSensor){
-		sSensor.cambiarModoSensor(idSensor);		
+		sSensor.cambiarModoSensor(idSensor);
 	}	
-	
-	
-	
 	
 }

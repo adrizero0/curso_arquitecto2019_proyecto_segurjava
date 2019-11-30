@@ -39,6 +39,13 @@ public class Alarma implements Serializable {
 
 	public Alarma() {
 	}
+		
+	public Alarma(int idAlarma, Date fechaHora, Sensor sensor) {
+		super();
+		this.idAlarma = idAlarma;
+		this.fechaHora = fechaHora;
+		this.sensor = sensor;
+	}
 
 	public int getIdAlarma() {
 		return this.idAlarma;

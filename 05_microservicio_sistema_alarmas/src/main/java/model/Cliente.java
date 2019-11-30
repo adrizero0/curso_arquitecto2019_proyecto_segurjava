@@ -35,6 +35,10 @@ public class Cliente implements Serializable {
 	//bi-directional many-to-one association to Contrato
 	@OneToMany(mappedBy="cliente")
 	private List<Contrato> contratos;
+	
+	private String telefono;
+	
+	private byte estado;
 
 	public Cliente() {
 	}
@@ -123,6 +127,22 @@ public class Cliente implements Serializable {
 		contrato.setCliente(null);
 
 		return contrato;
+	}
+	
+	public String getTelefono() {
+		return this.telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	
+	public byte getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(byte estado) {
+		this.estado = estado;
 	}
 
 }

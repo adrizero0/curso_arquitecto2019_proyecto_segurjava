@@ -33,12 +33,14 @@ public class ServiceSensorImpl implements ServiceSensor {
 
 	@Override
 	public void cambiarModoSensor(int idSensor) {
-		Sensor sensor= daoSensor.findById(idSensor).orElse(null);
+		Sensor sensor= obtenersensor(idSensor);
 		byte modo= sensor.getModo();
 		if(modo==(byte)1) {
 			sensor.setModo((byte) 0);
+			daoSensor.flush();
 		}else {
 			sensor.setModo((byte) 1);
+			daoSensor.flush();
 		}		
 	}
 
