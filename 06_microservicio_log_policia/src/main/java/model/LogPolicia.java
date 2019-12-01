@@ -23,7 +23,6 @@ public class LogPolicia implements Serializable {
 
 	private String direccion;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechahora;
 
 	private String poblacion;

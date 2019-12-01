@@ -21,14 +21,12 @@ public class AlarmaController {
 	@Autowired
 	ServicePolicia sPolicia;	
 
-	@Transactional
-	@PutMapping(value = "/intruso/{codpostal}/{direccion}/{fechahora}/{poblacion}/{provincia}/")
+	@PutMapping(value = "/intruso/{codpostal}/{direccion}/{poblacion}/{provincia}")
 	public void saltoDeAlarma(@PathVariable("codpostal") String codpostal,
 								@PathVariable("direccion") String direccion,
-								@PathVariable("fechahora") Date fechahora,
 								@PathVariable("poblacion") String poblacion,
 								@PathVariable("provincia") String provincia){
-		LogPolicia log=new LogPolicia(0,codpostal,direccion,fechahora,poblacion,provincia);
+		LogPolicia log=new LogPolicia(0,codpostal,direccion,new Date(),poblacion,provincia);
 		sPolicia.guardarRegistroAlarma(log);
 		System.out.println("Fueron guardados los datos en la policía.");
 	}	

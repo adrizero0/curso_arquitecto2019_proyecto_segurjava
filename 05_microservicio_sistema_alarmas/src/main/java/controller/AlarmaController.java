@@ -20,18 +20,28 @@ public class AlarmaController {
 	ServiceAlarma sAlarma;
 	
 //	@Value("${client.url.logpolicia}")
-	String url="http://servicio-logpolicia/zuullog/alerta/instruso";
+//	String url="http://servicio-logpolicia/zuullog/alerta/intruso/";
+//	String url="http://servidor-zuul:7000/servicio-logpolicia/zuullog/alerta/intruso/";
+	String url="http://servicio-logpolicia/zuullog/alerta/intruso/";
 	
 	@Autowired
 	RestTemplate template;
 	
+	@Transactional
 	@PutMapping(value = "/intruso/{idSensor}")
-	public void saltoDeAlarma(@PathVariable("idSensor") int idSensor){		
+	public void saltoDeAlarma(@PathVariable("idSensor") int idSensor){
 		Alarma alarma=sAlarma.crearAlarmaByIdSensor(idSensor);
 		String guardarAlarma= sAlarma.guardarRegistroAlarma(alarma);
+		
 		if(guardarAlarma.contentEquals("logPolicia")) {
+			System.out.println("entramos al if de alarma controller");
+			
 			LogPoliciaPojo policia= sAlarma.llamadoPolicia(alarma);
-			template.put(url+"/"+policia.getCodpostal()+"/"+policia.getDireccion()+"/"+policia.getFechahora()+"/"+policia.getPoblacion()+"/"+policia.getProvincia(), null);	
+			
+			System.out.println(url+policia.getCodpostal()+"/"+policia.getDireccion()+"/"+policia.getPoblacion()+"/"+policia.getProvincia());
+			
+			template.put(url+policia.getCodpostal()+"/"+policia.getDireccion()+"/"+policia.getPoblacion()+"/"+policia.getProvincia(), null);
+			
 			System.out.println("La policía fue reportada exitosamente.");
 		}
 	}	

@@ -28,7 +28,7 @@ public class SensorController {
 			List<DtoSensor> listaDto=new ArrayList<>();
 			while(true) {
 				List<Sensor> lista=sSensor.getSensoresByIdContrato(idContrato);
-				
+				System.out.println("Entramos al while");
 				for(Sensor l:lista) {
 					DtoSensor dtoSensor= new DtoSensor(l.getIdSensor(),
 														l.getEstado(),
@@ -37,12 +37,15 @@ public class SensorController {
 														l.getContrato().getIdContrato(),
 														l.getContrato().getCliente().getDni());
 					listaDto.add(dtoSensor);
+					System.out.println("Entramos al for");
 				}				
 				
 				if(cambio(anterior,listaDto)) {
 					fs.next(listaDto);
+					System.out.println("Entramos al if");
 				}
 				anterior=listaDto;
+				System.out.println("Entramos al no else "+anterior);
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {

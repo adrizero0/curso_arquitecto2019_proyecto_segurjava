@@ -29,6 +29,7 @@ public class ServiceAlarmaImpl implements ServiceAlarma {
 			llamadoPropietario(alarma.getSensor());
 			
 			if(alarma.getSensor().getContrato().getAvisoPolicia()==(byte)1) {
+				System.out.println(alarma.getSensor().getContrato().getAvisoPolicia()+"Entramos a al if del service alarma");
 				return "logPolicia";
 			}			
 		}return "propietario";
