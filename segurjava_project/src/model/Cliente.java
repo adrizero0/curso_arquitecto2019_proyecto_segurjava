@@ -31,6 +31,10 @@ public class Cliente implements Serializable {
 	private String poblacion;
 
 	private String provincia;
+	
+	private String telefono;
+	
+	private byte estado;
 
 	//bi-directional many-to-one association to Contrato
 	@OneToMany(mappedBy="cliente")
@@ -40,7 +44,7 @@ public class Cliente implements Serializable {
 	}
 	
 	public Cliente(String dni, String apellidos, String codpostal, String direccion, String iban, String nombre,
-			String poblacion, String provincia) {
+			String poblacion, String provincia, String telefono, byte estado) {
 		super();
 		this.dni = dni;
 		this.apellidos = apellidos;
@@ -50,7 +54,11 @@ public class Cliente implements Serializable {
 		this.nombre = nombre;
 		this.poblacion = poblacion;
 		this.provincia = provincia;
+		this.telefono = telefono;
+		this.estado = estado;
 	}
+
+
 
 	public String getDni() {
 		return this.dni;
@@ -122,6 +130,23 @@ public class Cliente implements Serializable {
 
 	public void setContratos(List<Contrato> contratos) {
 		this.contratos = contratos;
+	}
+
+	
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public byte getEstado() {
+		return estado;
+	}
+
+	public void setEstado(byte estado) {
+		this.estado = estado;
 	}
 
 	public Contrato addContrato(Contrato contrato) {
