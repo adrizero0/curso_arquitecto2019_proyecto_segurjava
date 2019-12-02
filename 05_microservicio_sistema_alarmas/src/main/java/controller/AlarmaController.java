@@ -20,9 +20,7 @@ public class AlarmaController {
 	ServiceAlarma sAlarma;
 	
 //	@Value("${client.url.logpolicia}")
-//	String url="http://servicio-logpolicia/zuullog/alerta/intruso/";
-//	String url="http://servidor-zuul:7000/servicio-logpolicia/zuullog/alerta/intruso/";
-	String url="http://servicio-logpolicia/zuullog/alerta/intruso/";
+	String url="http://servicio-logpolicia/alerta/intruso/";
 	
 	@Autowired
 	RestTemplate template;
