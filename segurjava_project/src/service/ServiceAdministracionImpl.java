@@ -10,10 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 import dao.DaoClientes;
 import dao.DaoContratos;
 import dao.DaoInfoAlarmas;
+import dao.DaoRoles;
 import dao.DaoSensores;
+import dao.DaoUsuarios;
 import model.Cliente;
 import model.Contrato;
+import model.Role;
+import model.RolePK;
 import model.Sensor;
+import model.Usuario;
 import model.VistaInfoAlarma;
 import varconst.ConstGenerales;
 
@@ -31,6 +36,12 @@ public class ServiceAdministracionImpl implements ServiceAdministracion {
 	
 	@Autowired
 	DaoInfoAlarmas daoInfoAlarmas;
+	
+	@Autowired
+	DaoUsuarios daoUsuarios;
+	
+	@Autowired
+	DaoRoles daoRoles;
 	
 	@Override
 	public Cliente obtenerDatosCliente(String dni) {
@@ -202,10 +213,28 @@ public class ServiceAdministracionImpl implements ServiceAdministracion {
 		return daoInfoAlarmas.getAllBetweenDates(fechaDesde, fechaHasta);
 	}
 
+	@Transactional
 	@Override
 	public void actDatosAcceso(String dni, String password) {
-		// TODO Auto-generated method stub
-
+		Usuario usuario = null;
+		Role role = null;
+		
+		if (daoUsuarios.existsById(dni)){
+			usuario = daoUsuarios.findById(dni).orElse(null);
+		} else {
+			usuario = new Usuario(dni, (byte) 1, password);
+			RolePK rolePK = new RolePK(dni,ConstGenerales.ROL_CLIENTE);
+			role = new Role(rolePK);
+		}
+		
+		if (usuario!=null) {
+			daoUsuarios.saveAndFlush(usuario);
+		}
+		if (role!=null) {
+			daoRoles.saveAndFlush(role);
+		}
+		
+		
 	}
 
 }
