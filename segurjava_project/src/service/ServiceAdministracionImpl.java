@@ -18,7 +18,7 @@ import model.VistaInfoAlarma;
 import varconst.ConstGenerales;
 
 @Service(value = "serviceAdmin")
-public class ServiceAdministraciónImpl implements ServiceAdministracion {
+public class ServiceAdministracionImpl implements ServiceAdministracion {
 
 	@Autowired
 	DaoClientes daoClientes;
@@ -131,7 +131,7 @@ public class ServiceAdministraciónImpl implements ServiceAdministracion {
 		
 			contrato.getSensores().forEach(sensor -> bajaSensor(sensor));
 			contrato.setEstado(ConstGenerales.BAJA);
-			actDatoscontrato(contrato);
+			actDatosContrato(contrato);
 		} //ConstGenerales.ALTA
 
 	}
