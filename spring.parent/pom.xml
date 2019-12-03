@@ -47,8 +47,6 @@
 
 </dependencies>
 
-	<modules>
-		<module>../segurjava_project</module>
-	</modules>
+
 	
 </project>

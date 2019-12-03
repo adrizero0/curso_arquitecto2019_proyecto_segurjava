@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head>
+	<script type="text/javascript" >
+    function invocaSensores() {
+      var jsfCommandLink = document.getElementById("form:link");
+      jsfCommandLink.click();
+    }
+   </script>
+</h:head> 
+
+<body> 
+	<center>
+		<h:form prependId="false">
+			<h1>Seleccione contrato:</h1>
+			<h:selectOneMenu id="listaContratos" value="#{clientesBean.idContratoSel}">
+				<f:selectItems var="c" value="#{clientesBean.listaContratos}"
+							itemValue="#{c.idContrato}"
+							itemLabel="#{c.idContrato}"/>
+				<f:ajax excecute="@form" render="tbsensores"/>
+			</h:selectOneMenu>			 
+		</h:form><br/><br/>
+		
+		<h:dataTable id="tbsensores" var="se" value="#{clientesBean.listaSensores}" border="1">
+			<h:column>
+				<f:facet name="header">Sensor</f:facet>
+				#{se.idSensor}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Estado</f:facet>
+				#{se.estado}
+			</h:column>
+			<h:column>
+				<f:facet name="header">Modo</f:facet>
+				#{se.modo}
+			</h:column>
+		</h:dataTable>
+		<br/><br/>
+		
+		<h:link outcome="altasensor" value="Añadir sensor"/><br/><br/>
+		<h:link outcome="login" value="Volver"/><br/><br/><br/><br/>		
+		<h:link outcome="baja" value="Darme de baja"/>
+	
+	</center>
+</body> 
+</html>
