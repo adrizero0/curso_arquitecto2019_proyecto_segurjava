@@ -70,7 +70,6 @@ public class ServiceSensorImpl implements ServiceSensor {
 												l.getContrato().getIdContrato(),
 												l.getContrato().getCliente().getDni());
 			listaDto.add(dtoSensor);
-			System.out.println("Entramos al for");
 		}
 		return listaDto;
 	}
