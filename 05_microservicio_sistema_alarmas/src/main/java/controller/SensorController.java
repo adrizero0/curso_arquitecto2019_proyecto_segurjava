@@ -21,31 +21,50 @@ public class SensorController {
 	@Autowired
 	ServiceSensor sSensor;
 	
+//	@GetMapping (value = "/lista/{idContrato}", produces="text/event-stream")
+//	public Flux<List<DtoSensor>> obtenerSensoresIdContrato(@PathVariable("idContrato") int idContrato) {
+//		return Flux.create(fs->{
+//			List<DtoSensor> anterior=null;
+//			List<DtoSensor> listaDto=new ArrayList<>();
+//			while(true) {
+//				List<DtoSensor> lista=sSensor.getSensoresDtoByIdContrato(idContrato);
+//				System.out.println("Entramos al while");
+//				for(Sensor l:lista) {
+//					DtoSensor dtoSensor= new DtoSensor(l.getIdSensor(),
+//														l.getEstado(),
+//														l.getModo(),
+//														l.getUbicacion(),
+//														l.getContrato().getIdContrato(),
+//														l.getContrato().getCliente().getDni());
+//					listaDto.add(dtoSensor);
+//					System.out.println("Entramos al for");
+//				}				
+				
+//				if(cambio(anterior,listaDto)) {
+//					fs.next(listaDto);
+//					System.out.println("Entramos al if");
+//				}
+//				anterior=lista;
+//				System.out.println("Entramos al no else "+anterior);
+//				try {
+//					Thread.sleep(3000);
+//				} catch (InterruptedException e) {
+//					e.printStackTrace();
+//				}								
+//			}			
+//		});
+//	}
+	
+
+	@CrossOrigin(origins="*")
 	@GetMapping (value = "/lista/{idContrato}", produces="text/event-stream")
-	public Flux<List<DtoSensor>> obtenerSensoresIdContrato(@PathVariable("idContrato") int idContrato) {
+	public Flux<List<Sensor>> obtenerSensoresIdContrato(@PathVariable("idContrato") int idContrato) { 
 		return Flux.create(fs->{
-			List<DtoSensor> anterior=null;
-			List<DtoSensor> listaDto=new ArrayList<>();
+			List<Sensor> anterior=null;			
 			while(true) {
 				List<Sensor> lista=sSensor.getSensoresByIdContrato(idContrato);
-				System.out.println("Entramos al while");
-				for(Sensor l:lista) {
-					DtoSensor dtoSensor= new DtoSensor(l.getIdSensor(),
-														l.getEstado(),
-														l.getModo(),
-														l.getUbicacion(),
-														l.getContrato().getIdContrato(),
-														l.getContrato().getCliente().getDni());
-					listaDto.add(dtoSensor);
-					System.out.println("Entramos al for");
-				}				
-				
-				if(cambio(anterior,listaDto)) {
-					fs.next(listaDto);
-					System.out.println("Entramos al if");
-				}
-				anterior=listaDto;
-				System.out.println("Entramos al no else "+anterior);
+				fs.next(lista);
+				anterior=lista;
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -55,38 +74,7 @@ public class SensorController {
 		});
 	}
 	
-	@GetMapping (value = "/lista/todos/{dni}", produces="text/event-stream")
-	public Flux<List<DtoSensor>> obtenerSensoresDni(@PathVariable("dni") int dni) {
-		return Flux.create(fs->{
-			List<DtoSensor> anterior=null;
-			List<DtoSensor> listaDto=new ArrayList<>();
-			
-			while(true) {
-				List<Sensor> lista=sSensor.getSensoresByDni(dni);				
-				for(Sensor l:lista) {
-					DtoSensor dtoSensor= new DtoSensor(l.getIdSensor(),
-														l.getEstado(),
-														l.getModo(),
-														l.getUbicacion(),
-														l.getContrato().getIdContrato(),
-														l.getContrato().getCliente().getDni());
-					listaDto.add(dtoSensor);
-				}				
-				
-				if(cambio(anterior,listaDto)) {
-					fs.next(listaDto);
-				}
-				anterior=listaDto;
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}								
-			}			
-		});
-	}
-	
-	private boolean cambio(List<DtoSensor> anterior,List<DtoSensor> actual ) {		
+	private boolean cambio(List<Sensor> anterior,List<Sensor> actual ) {		
 		if(anterior==null) {
 			return true;
 		}else {

@@ -12,14 +12,10 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	<context:annotation-config/>
 	<jee:jndi-lookup jndi-name="refsegurjava" id="dataServer"/>
-	<jee:jndi-lookup jndi-name="refseguridad" id="dataServerS"/>
 	<context:component-scan base-package="service"/>
 	<jpa:repositories base-package="daos" transaction-manager-ref="txManager"
 										entity-manager-factory-ref="factory"/>
-										
-<!-- 	<jpa:repositories base-package="daos" transaction-manager-ref="txManagerS" -->
-<!-- 										entity-manager-factory-ref="factoryS"/> -->
-		
+												
 	<!-- configuración integración Spring-JPA-Hibernate -->
 	<!-- creación adaptador JPA-Hibernate -->
 	<bean id="adapter"
@@ -42,21 +38,7 @@
 			</props>
 		</property>
 	</bean>	
-	
-	<!-- configuración JPA -->
-<!-- 	<bean id="factoryS" -->
-<!-- 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> -->
-<!-- 		<property name="persistenceUnitName" value="seguridadPU"></property> -->
-<!-- 		<property name="dataSource" ref="dataServerS"></property> -->
-<!-- 		<property name="jpaVendorAdapter" ref="adapter"></property> -->
-<!-- 		<property name="packagesToScan" value="model"></property> -->
-<!-- 		<property name="jpaProperties"> -->
-<!-- 			<props> -->
-<!-- 				<prop key="hibernate.enable_lazy_load_no_trans">true</prop> -->
-<!-- 			</props> -->
-<!-- 		</property> -->
-<!-- 	</bean> -->
-	
+		
 	<!-- transaccionalidad -->
 	
 	<bean id="txManager"
@@ -65,10 +47,5 @@
 	</bean>
 	<tx:annotation-driven transaction-manager="txManager"/>	
 	
-<!-- 	 transaccionalidad -->	 
-<!-- 	<bean id="txManagerS" -->
-<!-- 		class="org.springframework.orm.jpa.JpaTransactionManager"> -->
-<!-- 		<property name="entityManagerFactory" ref="factoryS"></property> -->
-<!-- 	</bean> -->
-<!-- 	<tx:annotation-driven transaction-manager="txManagerS"/>	 -->
+
 </beans>

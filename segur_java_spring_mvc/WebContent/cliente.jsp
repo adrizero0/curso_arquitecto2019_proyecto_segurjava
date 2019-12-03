@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	var evt;
 // 	var url="http://servidor-zuul:7000/zuulalarmas/alarmas/lista/";
-// 	var url="http://servicio-alarmas:8761/alarmas/lista/";
+// 	var url="http://servicio-alarmas/alarmas/lista/";
 	var url="http://localhost:8006/alarmas/lista/";
 	function doSensores(){
 		var idContrato=document.getElementById("idContrato").value;
