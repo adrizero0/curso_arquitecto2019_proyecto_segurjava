@@ -5,53 +5,55 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+
 @ManagedBean(name = "menuAdminBean")
 @RequestScoped
 public class MenuAdminBean {
 	
 	
+	
 	public String altaCliente() {
-		mensaje("Gesti贸n Clientes", "Alta Cliente");
+		mensaje("Gesti髇 Clientes", "Alta Cliente");
 		return "altacliente";
 	}
 	
 	public String modificarCliente() {
-		mensaje("Gesti贸n Clientes", "Modificar Cliente");
+		mensaje("Gesti髇 Clientes", "Modificar Cliente");
 		return "modificarcliente";
 	}
  
 	public String bajaCliente() {
-		mensaje("Gesti贸n Clientes", "Baja Cliente");
+		mensaje("Gesti髇 Clientes", "Baja Cliente");
 		return "bajacliente";
 	}
 
 	public String altaContrato() {
-		mensaje("Gesti贸n Contratos", "Alta Contrato");
+		mensaje("Gesti髇 Contratos", "Alta Contrato");
 		return "altacontrato";
 	}
 
 	public String modificarContrato() {
-		mensaje("Gesti贸n Contratos", "Modificar Contrato");
+		mensaje("Gesti髇 Contratos", "Modificar Contrato");
 		return "modificarcontrato";
 	}
 	
 	public String bajaContrato() {
-		mensaje("Gesti贸n Contratos", "Baja Contrato");
+		mensaje("Gesti髇 Contratos", "Baja Contrato");
 		return "bajacontrato";
 	}
 	
 	public String altaSensor() {
-		mensaje("Gesti贸n Sensores", "Alta Sensor");
+		mensaje("Gesti髇 Sensores", "Alta Sensor");
 		return "altasensor";
 	}
 
 	public String modificarSensor() {
-		mensaje("Gesti贸n Sensores", "Modificar Sensor");
+		mensaje("Gesti髇 Sensores", "Modificar Sensor");
 		return "modificarsensor";
 	}
 
 	public String bajaSensor() {
-		mensaje("Gesti贸n Sensores", "Baja Sensor");
+		mensaje("Gesti髇 Sensores", "Baja Sensor");
 		return "bajasensor";
 	}
 

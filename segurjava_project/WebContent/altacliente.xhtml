@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+<h:form>    
+ 
+   <h3>Nombre</h3>
+   <span class="ui-nombre">
+       <p:inputText id="idNombre" value="#{clienteBean.nombre}" />
+   </span>
+ 
+   <h3>Apellidos</h3>
+   <span class="ui-apellidos">
+       <p:inputText id="idApellidos" value="#{clienteBean.apellidos}" />
+   </span>
+   
+   <h3>Dirección</h3>
+   <span class="ui-direccion">
+       <p:inputText id="iddireccion" value="#{clienteBean.direccion}" />
+   </span>
+
+   <h3>Poblacion</h3>
+   <span class="ui-poblacion">
+       <p:inputText id="idpoblacion" value="#{clienteBean.poblacion}" />
+   </span>
+   
+   <h3>Provincia</h3>
+   <span class="ui-provincia">
+       <p:inputText id="idprovincia" value="#{clienteBean.provincia}" />
+   </span>
+   
+   <h3>Código Postal</h3>
+   <span class="ui-codpostal">
+       <p:inputText id="idcodpostal" value="#{clienteBean.codpostal}" />
+   </span>
+
+   <h3>Teléfono</h3>
+   <span class="ui-telefono">
+       <p:inputText id="idtelefono" value="#{clienteBean.telefono}" />
+   </span>
+ 
+ <h3>Cuenta Corriente de cobro</h3>
+   <span class="ui-iban">
+       <p:inputText id="idiban" value="#{clienteBean.iban}" />
+   </span>
+ 	
+ 	<p:commandButton value="ALTA" id="idalta" action="#{clienteBean.registrar()}" update="growl" style="margin-right:20px;" icon="pi pi-save" />
+ 	
+</h:form>
+</body>
+</html>

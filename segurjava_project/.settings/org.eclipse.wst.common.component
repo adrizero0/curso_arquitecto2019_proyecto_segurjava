@@ -4,6 +4,6 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="java-output-path" value="/segurjava_proyect/build/classes"/>
-        <property name="context-root" value="segurjava_project"/>
+        <property name="context-root" value="segurjava_projecto"/>
     </wb-module>
 </project-modules>
