@@ -10,7 +10,7 @@ import model.VistaInfoAlarma;
 
 public interface DaoInfoAlarmas extends JpaRepository<VistaInfoAlarma, Integer> {
 
-	@Query(value = "SELECT DISTINCT v.dni FROM VistaInfoAlarma")
+	@Query(value = "SELECT DISTINCT v.dni FROM VistaInfoAlarma v")
 	List<String> findAllDniWithAlarm();
 	
 	@Query(value = "SELECT v FROM VistaInfoAlarma v WHERE v.dni = ?1")

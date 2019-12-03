@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+		
+	<h:form>
+	
+	<b><h1 style="margin-top: 0">Menú Administración</h1></b>
+	
+    <p:growl>
+        <p:autoUpdate />
+    </p:growl>
+ 
+    <p:panelMenu style="width:300px">
+        <p:submenu label="Gestión Clientes">
+            <p:menuitem value="Alta Cliente" action="#{menuAdminBean.altaCliente}" icon="pi pi-user" />
+            <p:menuitem value="Modificar Cliente" action="#{menuAdminBean.modificarCliente}"  icon="pi pi-pencil" />
+            <p:menuitem value="Baja Cliente" action="#{menuAdminBean.bajaCliente}" icon="pi pi-times" />
+        </p:submenu>
+
+        <p:submenu label="Gestión Contratos">
+            <p:menuitem value="Alta Contrato" action="#{menuAdminBean.altaContrato}" icon="pi pi-id-card" />
+            <p:menuitem value="Modificar Contrato" action="#{menuAdminBean.modificarCliente}"  icon="pi pi-pencil" />
+            <p:menuitem value="Baja Contrato" action="#{menuAdminBean.bajaCliente}" icon="pi pi-times" />
+        </p:submenu>        
+
+        <p:submenu label="Gestión Sensores">
+            <p:menuitem value="Alta Sensor" action="#{menuAdminBean.altaSensor}" icon="pi pi-mobile" />
+            <p:menuitem value="Modificar Sensor" action="#{menuAdminBean.modificarSensor}"  icon="pi pi-pencil" />
+            <p:menuitem value="Baja Sensor" action="#{menuAdminBean.bajaSensor}" icon="pi pi-times" />
+        </p:submenu>        
+
+		<p:separator />
+
+        <p:submenu label="Informes">
+            <p:menuitem value="Alertas Cliente" action="#{menuAdminBean.infoAlertasCliente}" icon="pi pi-file-o" />
+            <p:menuitem value="Alertas Rango Fechas" action="#{menuAdminBean.infoAlertasFechas}"  icon="pi pi-calendar" />
+        </p:submenu>        
+        
+    </p:panelMenu>
+</h:form>
+	
+</body> 
+</html>

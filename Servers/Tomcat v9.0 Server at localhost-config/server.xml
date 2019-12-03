@@ -35,7 +35,13 @@
   <GlobalNamingResources>
     <!-- Editable user database that can also be used by
          UserDatabaseRealm to authenticate users
+         
+         driverClassName="com.mysql.cj.jdbc.Driver" versión 8 MySQL
+         driverClassName="com.mysql.jdbc.Driver" versión 5 MySQL
     -->
+    <Resource driverClassName="com.mysql.cj.jdbc.Driver" name="jdbc/segurjavads" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/segurjava?serverTimezone=UTC" username="root"/>
+    <Resource driverClassName="com.mysql.cj.jdbc.Driver" name="jdbc/seguridadds" password="root" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/seguridad?serverTimezone=UTC" username="root"/>
+    
     <Resource auth="Container" description="User database that can be updated and saved" factory="org.apache.catalina.users.MemoryUserDatabaseFactory" name="UserDatabase" pathname="conf/tomcat-users.xml" type="org.apache.catalina.UserDatabase"/>
   </GlobalNamingResources>
 
@@ -149,7 +155,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      </Host>
+      <Context docBase="segurjava_project" path="/segurjava_project" reloadable="true" source="org.eclipse.jst.jee.server:segurjava_project"/></Host>
     </Engine>
   </Service>
 </Server>
