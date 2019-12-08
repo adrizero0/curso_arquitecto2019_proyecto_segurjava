@@ -7,8 +7,7 @@ import model.Sensor;
 public interface ServiceAlarma {
 	String guardarRegistroAlarma(Alarma alarma);
 	void llamadoPropietario(Sensor sensor);
-	LogPoliciaPojo llamadoPolicia(Alarma alarma);
 	Alarma crearAlarmaByIdSensor(int idSensor);
-	
+	LogPoliciaPojo llamadoPolicia(Alarma alarma);
 
 }

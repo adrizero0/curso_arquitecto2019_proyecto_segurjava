@@ -24,6 +24,8 @@ public class Cliente implements Serializable {
 
 	private String direccion;
 
+	private byte estado;
+
 	private String iban;
 
 	private String nombre;
@@ -32,13 +34,11 @@ public class Cliente implements Serializable {
 
 	private String provincia;
 
+	private String telefono;
+
 	//bi-directional many-to-one association to Contrato
 	@OneToMany(mappedBy="cliente")
 	private List<Contrato> contratos;
-	
-	private String telefono;
-	
-	private byte estado;
 
 	public Cliente() {
 	}
@@ -75,6 +75,14 @@ public class Cliente implements Serializable {
 		this.direccion = direccion;
 	}
 
+	public byte getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(byte estado) {
+		this.estado = estado;
+	}
+
 	public String getIban() {
 		return this.iban;
 	}
@@ -107,6 +115,14 @@ public class Cliente implements Serializable {
 		this.provincia = provincia;
 	}
 
+	public String getTelefono() {
+		return this.telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
 	public List<Contrato> getContratos() {
 		return this.contratos;
 	}
@@ -127,22 +143,6 @@ public class Cliente implements Serializable {
 		contrato.setCliente(null);
 
 		return contrato;
-	}
-	
-	public String getTelefono() {
-		return this.telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-	
-	public byte getEstado() {
-		return this.estado;
-	}
-
-	public void setEstado(byte estado) {
-		this.estado = estado;
 	}
 
 }

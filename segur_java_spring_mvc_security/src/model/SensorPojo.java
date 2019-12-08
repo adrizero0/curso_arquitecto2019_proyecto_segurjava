@@ -1,7 +1,9 @@
-package dtos;
+package model;
 
-public class DtoSensor {
-	
+import java.util.List;
+
+public class SensorPojo {
+
 	private int idSensor;
 
 	private byte estado;
@@ -10,26 +12,24 @@ public class DtoSensor {
 
 	private String ubicacion;
 
-	private int idContrato;
-	
-	private String dni;
+	private List<Alarma> alarmas;
 
-	public DtoSensor() {
-		super();
+	private Contrato contrato;
+
+	public SensorPojo() {
 	}
 
-	public DtoSensor(int idSensor, byte estado, byte modo, String ubicacion, int idContrato, String dni) {
+	public SensorPojo(int idSensor, byte estado, byte modo, String ubicacion, Contrato contrato) {
 		super();
 		this.idSensor = idSensor;
 		this.estado = estado;
 		this.modo = modo;
 		this.ubicacion = ubicacion;
-		this.idContrato = idContrato;
-		this.dni = dni;
+		this.contrato = contrato;
 	}
 
 	public int getIdSensor() {
-		return idSensor;
+		return this.idSensor;
 	}
 
 	public void setIdSensor(int idSensor) {
@@ -37,7 +37,7 @@ public class DtoSensor {
 	}
 
 	public byte getEstado() {
-		return estado;
+		return this.estado;
 	}
 
 	public void setEstado(byte estado) {
@@ -45,7 +45,7 @@ public class DtoSensor {
 	}
 
 	public byte getModo() {
-		return modo;
+		return this.modo;
 	}
 
 	public void setModo(byte modo) {
@@ -53,26 +53,27 @@ public class DtoSensor {
 	}
 
 	public String getUbicacion() {
-		return ubicacion;
+		return this.ubicacion;
 	}
 
 	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
 	}
 
-	public int getIdContrato() {
-		return idContrato;
+	public List<Alarma> getAlarmas() {
+		return this.alarmas;
 	}
 
-	public void setIdContrato(int idContrato) {
-		this.idContrato = idContrato;
+	public void setAlarmas(List<Alarma> alarmas) {
+		this.alarmas = alarmas;
 	}
 
-	public String getDni() {
-		return dni;
+	public Contrato getContrato() {
+		return this.contrato;
 	}
 
-	public void setDni(String dni) {
-		this.dni = dni;
+	public void setContrato(Contrato contrato) {
+		this.contrato = contrato;
 	}
+
 }

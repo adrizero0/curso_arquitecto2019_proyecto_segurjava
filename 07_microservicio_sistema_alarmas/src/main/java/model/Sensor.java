@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -21,21 +20,25 @@ public class Sensor implements Serializable {
 
 	private byte estado;
 
+	private int idContrato;
+
 	private byte modo;
 
 	private String ubicacion;
 
-	//bi-directional many-to-one association to Alarma
-	@OneToMany(mappedBy="sensor")
-	private List<Alarma> alarmas;
-
-	//bi-directional many-to-one association to Contrato
-	@ManyToOne
-	@JoinColumn(name="idContrato")
-	private Contrato contrato;
-
 	public Sensor() {
 	}
+	
+
+	public Sensor(int idSensor, byte estado, int idContrato, byte modo, String ubicacion) {
+		super();
+		this.idSensor = idSensor;
+		this.estado = estado;
+		this.idContrato = idContrato;
+		this.modo = modo;
+		this.ubicacion = ubicacion;
+	}
+
 
 	public int getIdSensor() {
 		return this.idSensor;
@@ -53,6 +56,14 @@ public class Sensor implements Serializable {
 		this.estado = estado;
 	}
 
+	public int getIdContrato() {
+		return this.idContrato;
+	}
+
+	public void setIdContrato(int idContrato) {
+		this.idContrato = idContrato;
+	}
+
 	public byte getModo() {
 		return this.modo;
 	}
@@ -67,36 +78,6 @@ public class Sensor implements Serializable {
 
 	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
-	}
-
-	public List<Alarma> getAlarmas() {
-		return this.alarmas;
-	}
-
-	public void setAlarmas(List<Alarma> alarmas) {
-		this.alarmas = alarmas;
-	}
-
-	public Alarma addAlarma(Alarma alarma) {
-		getAlarmas().add(alarma);
-		alarma.setSensor(this);
-
-		return alarma;
-	}
-
-	public Alarma removeAlarma(Alarma alarma) {
-		getAlarmas().remove(alarma);
-		alarma.setSensor(null);
-
-		return alarma;
-	}
-
-	public Contrato getContrato() {
-		return this.contrato;
-	}
-
-	public void setContrato(Contrato contrato) {
-		this.contrato = contrato;
 	}
 
 }

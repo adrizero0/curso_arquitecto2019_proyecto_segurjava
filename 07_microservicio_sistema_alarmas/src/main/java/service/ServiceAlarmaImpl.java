@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import daos.DaoAlarma;
+import daos.DaoContrato;
+import daos.DaoSensor;
 import model.Alarma;
+import model.Contrato;
 import model.LogPoliciaPojo;
 import model.Sensor;
 
@@ -17,19 +20,29 @@ public class ServiceAlarmaImpl implements ServiceAlarma {
 	DaoAlarma daoAlarma;
 	
 	@Autowired
+	DaoContrato daoContrato;
+	
+	@Autowired
+	DaoSensor daoSensor;
+	
+	@Autowired
 	ServiceSensor sSensor;
 
 	
 	@Transactional
 	@Override
 	public String guardarRegistroAlarma(Alarma alarma) {
-		if(alarma.getSensor().getEstado()!=(byte)0) {
-			daoAlarma.save(alarma);		
-			sSensor.cambiarModoSensorAlarma(alarma.getSensor().getIdSensor());
-			llamadoPropietario(alarma.getSensor());
+		int idSensor=alarma.getIdSensor();
+		Sensor sensor=daoSensor.findById(idSensor).orElse(null);
+		Contrato contrato=daoContrato.findById(sensor.getIdContrato()).orElse(null);
+		
+		if(sensor.getEstado()!=(byte)0) {
+			daoAlarma.save(alarma);
+			sSensor.cambiarModoSensorAlarma(idSensor);
+			llamadoPropietario(sensor);
 			
-			if(alarma.getSensor().getContrato().getAvisoPolicia()==(byte)1) {
-				System.out.println(alarma.getSensor().getContrato().getAvisoPolicia()+"Entramos a al if del service alarma");
+			if(contrato.getAvisoPolicia()==(byte)1) {
+				System.out.println(contrato.getAvisoPolicia()+"= Entramos a al if del service alarma");
 				return "logPolicia";
 			}			
 		}return "propietario";
@@ -37,29 +50,28 @@ public class ServiceAlarmaImpl implements ServiceAlarma {
 
 	@Override
 	public void llamadoPropietario(Sensor sensor) {
-		String telefono= sensor.getContrato().getCliente().getTelefono();		
-		System.out.println("Salto de alarma en dirección "+sensor.getContrato().getDireccion()+": Se avisará al propietario al número "+telefono); 
-	}
-
-	@Override
-	public LogPoliciaPojo llamadoPolicia(Alarma alarma) {
-		LogPoliciaPojo log=new LogPoliciaPojo (0, alarma.getSensor().getContrato().getCodpostal(),
-													alarma.getSensor().getContrato().getDireccion(),
-													alarma.getFechaHora(),
-													alarma.getSensor().getContrato().getPoblacion(),
-													alarma.getSensor().getContrato().getProvincia());
-		return log;
+		Contrato contrato=daoContrato.findById(sensor.getIdContrato()).orElse(null);
+		String telefono= contrato.getCliente().getTelefono();
+		System.out.println("Salto de alarma en dirección "+contrato.getDireccion()+": Se avisará al propietario al número "+telefono); 
 	}
 
 	@Override
 	public Alarma crearAlarmaByIdSensor(int idSensor) {
-		Alarma alarma= new Alarma (0, new Date(), sSensor.obtenersensor(idSensor));
+		Alarma alarma= new Alarma (0, new Date(), idSensor);
 		return alarma;
 	}	
 	
-	
-	
-	
+	@Override
+	public LogPoliciaPojo llamadoPolicia(Alarma alarma) {
+		Sensor sensor=daoSensor.findById(alarma.getIdSensor()).orElse(null);
+		Contrato contrato=daoContrato.findById(sensor.getIdContrato()).orElse(null);
+		LogPoliciaPojo log=new LogPoliciaPojo (0, contrato.getCodpostal(),
+													contrato.getDireccion(),
+													new Date(),
+													contrato.getPoblacion(),
+													contrato.getProvincia());
+		return log;
+	}
 	
 	
 	

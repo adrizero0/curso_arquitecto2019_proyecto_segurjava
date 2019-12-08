@@ -1,18 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
@@ -32,20 +22,19 @@ public class Alarma implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaHora;
 
-	//bi-directional many-to-one association to Sensor
-	@ManyToOne
-	@JoinColumn(name="idSensor")
-	private Sensor sensor;
+	private int idSensor;
 
 	public Alarma() {
 	}
-		
-	public Alarma(int idAlarma, Date fechaHora, Sensor sensor) {
+	
+	public Alarma(int idAlarma, Date fechaHora, int idSensor) {
 		super();
 		this.idAlarma = idAlarma;
 		this.fechaHora = fechaHora;
-		this.sensor = sensor;
+		this.idSensor = idSensor;
 	}
+
+
 
 	public int getIdAlarma() {
 		return this.idAlarma;
@@ -63,12 +52,12 @@ public class Alarma implements Serializable {
 		this.fechaHora = fechaHora;
 	}
 
-	public Sensor getSensor() {
-		return this.sensor;
+	public int getIdSensor() {
+		return this.idSensor;
 	}
 
-	public void setSensor(Sensor sensor) {
-		this.sensor = sensor;
+	public void setIdSensor(int idSensor) {
+		this.idSensor = idSensor;
 	}
 
 }
