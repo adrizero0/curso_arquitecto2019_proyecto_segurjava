@@ -9,4 +9,5 @@ public interface ServiceSensor {
 	void cambiarModoSensor(int idSensor);
 	Sensor obtenerSensor(int idSensor);
 	void cambiarModoSensorAlarma(int idSensor);
+	List<Sensor> getSensores();
 }

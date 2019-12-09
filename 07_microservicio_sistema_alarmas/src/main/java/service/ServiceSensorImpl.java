@@ -46,5 +46,10 @@ public class ServiceSensorImpl implements ServiceSensor {
 	public Sensor obtenerSensor(int idSensor) {
 		return daoSensor.findById(idSensor).orElse(null);
 	}
+
+	@Override
+	public List<Sensor> getSensores() {
+		return daoSensor.findAll();
+	}
 	
 }

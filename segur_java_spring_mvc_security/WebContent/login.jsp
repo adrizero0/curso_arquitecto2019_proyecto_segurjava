@@ -17,9 +17,9 @@
 <body>
 <div class="container">
 	<h1>Autenticación</h1>
-	<form action="doLogin" method="post">
+	<form action="doLogin" method="post" accept-charset="utf-8">
 		<div class="form-group">
-			<label>Usuario:</label><input type="text" name="dni" class="form-control" style="width:30%" placeholder="Dni" autocomplete="name"/>
+			<label>Usuario:</label><input type="text" name="dni" class="form-control" style="width:30%" placeholder="Dni"/>
 		</div>
 		<div class="form-group">
 			<label>Password:</label><input type="password" name="password" class="form-control" style="width:30%" placeholder="Contraseña"/>

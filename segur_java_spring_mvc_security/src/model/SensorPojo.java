@@ -1,31 +1,27 @@
 package model;
 
-import java.util.List;
-
 public class SensorPojo {
-
+	
 	private int idSensor;
 
 	private byte estado;
+
+	private int idContrato;
 
 	private byte modo;
 
 	private String ubicacion;
 
-	private List<Alarma> alarmas;
-
-	private Contrato contrato;
-
 	public SensorPojo() {
 	}
-
-	public SensorPojo(int idSensor, byte estado, byte modo, String ubicacion, Contrato contrato) {
+	
+	public SensorPojo(int idSensor, byte estado, int idContrato, byte modo, String ubicacion) {
 		super();
 		this.idSensor = idSensor;
 		this.estado = estado;
+		this.idContrato = idContrato;
 		this.modo = modo;
 		this.ubicacion = ubicacion;
-		this.contrato = contrato;
 	}
 
 	public int getIdSensor() {
@@ -44,6 +40,14 @@ public class SensorPojo {
 		this.estado = estado;
 	}
 
+	public int getIdContrato() {
+		return this.idContrato;
+	}
+
+	public void setIdContrato(int idContrato) {
+		this.idContrato = idContrato;
+	}
+
 	public byte getModo() {
 		return this.modo;
 	}
@@ -58,22 +62,6 @@ public class SensorPojo {
 
 	public void setUbicacion(String ubicacion) {
 		this.ubicacion = ubicacion;
-	}
-
-	public List<Alarma> getAlarmas() {
-		return this.alarmas;
-	}
-
-	public void setAlarmas(List<Alarma> alarmas) {
-		this.alarmas = alarmas;
-	}
-
-	public Contrato getContrato() {
-		return this.contrato;
-	}
-
-	public void setContrato(Contrato contrato) {
-		this.contrato = contrato;
 	}
 
 }

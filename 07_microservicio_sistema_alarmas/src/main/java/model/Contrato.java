@@ -32,7 +32,7 @@ public class Contrato implements Serializable {
 
 	//bi-directional many-to-one association to Cliente
 	@ManyToOne
-	@JoinColumn(name="idCliente")
+	@JoinColumn(name="idCliente",referencedColumnName = "dni")
 	private Cliente cliente;
 
 	public Contrato() {

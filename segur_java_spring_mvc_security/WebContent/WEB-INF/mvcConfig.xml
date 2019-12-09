@@ -17,4 +17,5 @@
 		class="org.springframework.web.client.RestTemplate">
 	</bean>
 	<mvc:view-controller path="toLogin" view-name="login"/>
+	<mvc:view-controller path="toAdmin" view-name="menuadmin"/>
 </beans>

@@ -12,6 +12,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	<context:annotation-config/>
 	<jee:jndi-lookup jndi-name="refsegurjava" id="dataServer"/>
+	<jee:jndi-lookup jndi-name="refseguridad" id="dataUsers"/>
 	<context:component-scan base-package="service"/>
 	<jpa:repositories base-package="daos" transaction-manager-ref="txManager"
 										entity-manager-factory-ref="factory"/>

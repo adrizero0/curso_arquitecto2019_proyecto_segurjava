@@ -2,7 +2,6 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -33,12 +32,8 @@ public class Contrato implements Serializable {
 
 	//bi-directional many-to-one association to Cliente
 	@ManyToOne
-	@JoinColumn(name="idCliente")
+	@JoinColumn(name="idCliente",referencedColumnName = "dni")
 	private Cliente cliente;
-
-	//bi-directional many-to-one association to Sensor
-	@OneToMany(mappedBy="contrato")
-	private List<Sensor> sensores;
 
 	public Contrato() {
 	}
@@ -106,15 +101,5 @@ public class Contrato implements Serializable {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-
-	public List<Sensor> getSensores() {
-		return this.sensores;
-	}
-
-	public void setSensores(List<Sensor> sensores) {
-		this.sensores = sensores;
-	}
-
-
 
 }

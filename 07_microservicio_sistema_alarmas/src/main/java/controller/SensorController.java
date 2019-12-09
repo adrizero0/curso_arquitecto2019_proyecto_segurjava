@@ -25,16 +25,33 @@ public class SensorController {
 		List<Sensor> lista= sSensor.getSensoresByIdContrato(idContrato);
 		lista.add(new Sensor(0, (byte)0, idContrato, (byte)0, "EOF"));
 		return Flux.fromIterable(lista);		
-	}
-	
+	}	
 	
 	@CrossOrigin(origins="*")
-	@GetMapping (value = "/lista/{idContrato}", produces="text/event-stream")
-	public Flux<List<Sensor>> obtenerSensoresIdContrato(@PathVariable("idContrato") int idContrato) { 
+	@GetMapping (value = "/todalista2", produces="text/event-stream")
+	public Flux<List<Sensor>> obtenerSensores2() { 
+		return Flux.create(fs->{
+			List<Sensor> anterior=null;
+			while(true) {
+				List<Sensor> lista=sSensor.getSensores();				
+				fs.next(lista);								
+				anterior=lista;
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}			
+		});
+	}
+	
+	@CrossOrigin(origins="*")
+	@GetMapping (value = "/todalista", produces="text/event-stream")
+	public Flux<List<Sensor>> obtenerSensores() { 
 		return Flux.create(fs->{
 			List<Sensor> anterior=null;			
 			while(true) {
-				List<Sensor> lista=sSensor.getSensoresByIdContrato(idContrato);
+				List<Sensor> lista=sSensor.getSensores();
 				if(cambio(anterior,lista)) {
 					fs.next(lista);
 				}				
@@ -48,12 +65,42 @@ public class SensorController {
 		});
 	}
 	
-	private boolean cambio(List<Sensor> anterior,List<Sensor> actual ) {		
+	@CrossOrigin(origins="*")
+	@GetMapping (value = "/lista/{idContrato}", produces="text/event-stream")
+	public Flux<List<Sensor>> obtenerSensoresIdContrato(@PathVariable("idContrato") int idContrato) { 
+		return Flux.create(fs->{
+			System.out.println("Entramos al create");
+			List<Sensor> anterior=null;			
+			while(true) {
+				System.out.println("Entramos al while true del flux");
+				List<Sensor> lista=sSensor.getSensoresByIdContrato(idContrato);
+				if(cambio(anterior,lista)) {
+					fs.next(lista);
+					System.out.println("Entramos al if");
+				}				
+				anterior=lista;
+				try {
+					System.out.println("Entramos al try");
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					System.out.println("Entramos al catch");
+					e.printStackTrace();
+				}
+			}			
+		});
+	}
+	
+	private boolean cambio(List<Sensor> anterior,List<Sensor> actual ) {	
+		System.out.println("Entramos al cambio");
 		if(anterior==null) {
+			System.out.println("Entramos al cambio//if");
 			return true;
 		}else {
+			System.out.println("Entramos al cambio//else");
 			for(int i=0;i<actual.size();i++) {
+				System.out.println("Entramos al cambio//else/for");
 				if(anterior.get(i).getEstado()!=actual.get(i).getEstado()||anterior.get(i).getModo()!=actual.get(i).getModo()){
+					System.out.println("Entramos al cambio//else/for/if");
 					return true;
 				}
 			}
