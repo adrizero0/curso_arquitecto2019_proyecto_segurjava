@@ -11,8 +11,7 @@
 		<security:http-basic/>
 		
 		<!--	PROTECCION DE RECURSOS -->
-		<security:intercept-url pattern="/toLogin/**" access="ROLE_USER"/>
-		<security:intercept-url pattern="/toAdmin/**" access="ROLE_ADMIN"/>
+		<security:intercept-url pattern="/doEntrar/**" access="ROLE_USER"/>
 		
 <!-- 		PROTECCION CONTRA ATAQUES -->
 		<security:csrf disabled="true"/>

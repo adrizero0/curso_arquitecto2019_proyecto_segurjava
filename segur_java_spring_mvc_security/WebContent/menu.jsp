@@ -12,12 +12,9 @@
 <body>
 	<h1>Menú</h1>
 	<div class="input-group">
-		<h2><a href="toLogin">Cliente</a></h2><br/><br/>
-	</div>
-	<div class="input-group">
-		<h2><a href="toAdmin">Administrador</a></h2><br/><br/>
+		<h2><a href="doEntrar">Entrar</a></h2><br/><br/>
 	</div>
 	
-	<h2>Meterse en Cliente, con user 123 y password asd para pruebas.</h2>
+	<h3>Probar con user 123 y password asd.</h3>
 </body>
 </html>

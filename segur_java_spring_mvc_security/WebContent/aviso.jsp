@@ -11,6 +11,6 @@
 	<br/><br/>
 	<h2>Revisar en base de datos, se ha guardado en log policía y se ha cambiado el estado para alerta en el sensor.</h2>
 	<h2>Comprobando que el contrato tiene el aviso a la policía contratado.</h2>
-	<a href="toClienteContratos">volver</a>
+	<a href="toMenu">Volver</a>
 </body>
 </html>
