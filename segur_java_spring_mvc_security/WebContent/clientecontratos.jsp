@@ -21,5 +21,7 @@
 			<input type="submit" value="Ver Sensores"/>	
 		</form>
 		
+		
+		
 </body>
 </html>

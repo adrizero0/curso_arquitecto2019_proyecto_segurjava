@@ -10,4 +10,4 @@ zuul:
     servicio-alarmas:
       path: /zuulalarma/**
       serviceId: servicio-alarmas
-spring:  profiles:    active:      adripriv  application:    name: servidor-zuul
+spring:  profiles:    active:      adriclase  application:    name: servidor-zuul

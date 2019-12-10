@@ -29,7 +29,7 @@
 		
 	</form>
 	<br/><br/>
-	
+	<h2>Logearse con user 123 y password asd para pruebas.</h2>
 
 </div>
 </body>

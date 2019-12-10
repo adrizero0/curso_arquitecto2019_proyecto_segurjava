@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import model.Cliente;
 import model.Contrato;
-import model.SensorPojo;
+import model.Sensor;
 import service.ServiceCliente;
 
 @CrossOrigin(origins = "*")
@@ -26,6 +25,11 @@ import service.ServiceCliente;
 public class ClienteController {
 	@Autowired
 	ServiceCliente sClientes;
+	
+	@Autowired
+	RestTemplate template;
+	
+	String url="http://10.2.4.12:8006/alarmas/intruso/";
 	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value="/toClienteContratos", method = {RequestMethod.GET,RequestMethod.POST})
@@ -37,6 +41,7 @@ public class ClienteController {
 		
 		request.setAttribute("contratos", contratos);
 		System.out.println("La lista de contratos es: "+contratos);
+				
 		return "clientecontratos";
 	}
 	
@@ -48,7 +53,20 @@ public class ClienteController {
 		request.setAttribute("idContrato", idContrato);
 		System.out.println("idContrato es: "+idContrato);
 		
+		List<Sensor> sensores= sClientes.obtenerListaSensores(idContrato);
+		request.setAttribute("sensores", sensores);
+		
 		return "cliente";
+	}
+	
+	@CrossOrigin(origins = "*")
+	@PostMapping(value="/doAlerta")
+	public String obtenerLista(@RequestParam("idSensor") int idSensor, HttpServletRequest request) {
+		System.out.println("Estamos dentro del doAlerta");
+		
+		template.put(url+idSensor, null);
+		
+		return "aviso";
 	}
 	
 	@CrossOrigin(origins = "*")

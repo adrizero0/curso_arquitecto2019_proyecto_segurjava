@@ -17,5 +17,7 @@
 	<div class="input-group">
 		<h2><a href="toAdmin">Administrador</a></h2><br/><br/>
 	</div>
+	
+	<h2>Meterse en Cliente, con user 123 y password asd para pruebas.</h2>
 </body>
 </html>
