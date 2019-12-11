@@ -19,7 +19,7 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 	
-	@LoadBalanced	//HABILITA USO DE LIBRERIA RIBBON
+	@LoadBalanced //HABILITA USO DE LIBRERIA RIBBON
  	@Bean
 	public RestTemplate getTemplate() {
 		return new RestTemplate();

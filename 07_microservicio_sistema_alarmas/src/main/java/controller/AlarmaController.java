@@ -25,6 +25,7 @@ public class AlarmaController {
 	@Autowired
 	RestTemplate template;
 	
+	@CrossOrigin(origins = "*")
 	@Transactional
 	@PutMapping(value = "/intruso/{idSensor}")
 	public void saltoDeAlarma(@PathVariable("idSensor") int idSensor){
