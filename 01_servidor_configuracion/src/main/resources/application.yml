@@ -1,3 +1,3 @@
 server:
   port: 8888
-spring:  cloud:    config:      server:        git:          uri: https://github.com/adrizero0/configuracion_spring_cloud_arq_java
+spring:  cloud:    config:      server:        git:          uri: https://github.com/adrizero0/configuracion_spring_cloud_segurjava.git

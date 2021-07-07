@@ -26,4 +26,6 @@
     <!--
     <Manager pathname="" />
     -->
+    <ResourceLink type="javax.sql.DataSource" name="refsegurjava" global="jdbc/segurjavads"/>
+    <ResourceLink type="javax.sql.DataSource" name="refseguridad" global="jdbc/seguridadds"/>
 </Context>

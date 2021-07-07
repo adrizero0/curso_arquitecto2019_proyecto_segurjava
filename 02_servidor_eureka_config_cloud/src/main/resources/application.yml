@@ -1,0 +1,4 @@
+spring:
+  application:    name: servidor-eureka  profiles:    active:      adriclase
+server:
+  port: 8761

@@ -1,0 +1,13 @@
+server:
+  port: 7000
+zuul:
+  ignoredServices: '*'  
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  routes:
+    servicio-logpolicia: 
+      path: /zuullog/**
+      serviceId: servicio-logpolicia
+    servicio-alarmas:
+      path: /zuulalarma/**
+      serviceId: servicio-alarmas
+spring:  profiles:    active:      adriclase  application:    name: servidor-zuul
